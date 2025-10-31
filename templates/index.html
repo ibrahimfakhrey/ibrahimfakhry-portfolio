@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ibrahim Fakhry Ibrahim - Programmer & AI Instructor</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">IF</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#courses">Courses</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#github">GitHub</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="nav-buttons">
+                <a href="register.html" class="btn-secondary">Register</a>
+                <a href="login.html" class="btn-primary">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-background">
+            <div class="hero-image-container">
+                <img src="static/images/profile.jpg" alt="Ibrahim Fakhry Ibrahim" class="hero-profile-image">
+                <div class="hero-overlay"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="hero-name">Ibrahim Fakhry Ibrahim</span>
+            </h1>
+            <p class="hero-subtitle">Programmer & AI Instructor</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn-hero btn-primary">Explore My Projects</a>
+                <a href="#courses" class="btn-hero btn-secondary">Learn Programming with Me</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">
+                        I'm a programmer and teacher who builds modern web applications and teaches programming — 
+                        including <span class="highlight">Artificial Intelligence</span> — to help others turn ideas 
+                        into real-world projects.
+                    </p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="icon">📧</span>
+                            <a href="mailto:ibrahimfakhryams@gmail.com">ibrahimfakhryams@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">📞</span>
+                            <a href="tel:01012818977">01012818977</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-glow"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Al Moshtriyat</h3>
+                        <p class="project-description">E-commerce platform with modern design and seamless user experience</p>
+                        <a href="https://www.almoshtriyat.com" target="_blank" class="project-link">
+                            Visit Site
+                            <span class="arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-glow"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">AMS Coding</h3>
+                        <p class="project-description">Educational platform for learning programming and technology</p>
+                        <a href="https://www.amscoding.com" target="_blank" class="project-link">
+                            Visit Site
+                            <span class="arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-glow"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">MVT UAE</h3>
+                        <p class="project-description">Professional business solutions and consulting services</p>
+                        <a href="https://www.mvtuae.com" target="_blank" class="project-link">
+                            Visit Site
+                            <span class="arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-glow"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">ME Consulting</h3>
+                        <p class="project-description">Strategic consulting and management solutions</p>
+                        <a href="https://www.me-consulting.ae" target="_blank" class="project-link">
+                            Visit Site
+                            <span class="arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Programming Courses</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-icon">🌐</div>
+                    <h3 class="course-title">Full Web Development Track</h3>
+                    <p class="course-description">Master HTML, CSS, JavaScript, and modern frameworks to build complete web applications from scratch.</p>
+                    <a href="#contact" class="course-btn">Join Now</a>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-icon">🐍</div>
+                    <h3 class="course-title">Python & Flask Mastery</h3>
+                    <p class="course-description">Learn Python programming and Flask framework to create powerful backend applications and APIs.</p>
+                    <a href="#contact" class="course-btn">Join Now</a>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-icon">🤖</div>
+                    <h3 class="course-title">AI for Beginners and Advanced</h3>
+                    <p class="course-description">Explore Artificial Intelligence, Machine Learning, and Neural Networks from basics to advanced applications.</p>
+                    <a href="#contact" class="course-btn">Join Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+        <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Gallery</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item large" data-tilt>
+                    <img src="static/images/profile.jpg" alt="Ibrahim Fakhry Ibrahim - Professional Speaker" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Ibrahim Fakhry Ibrahim</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-tilt>
+                    <img src="static/images/photo1.jpg" alt="Teaching Programming" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Teaching & Collaboration</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-tilt>
+                    <img src="static/images/photo2.jpg" alt="Tech Conference" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Tech Conference</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-tilt>
+                    <img src="static/images/photo3.jpg" alt="Professional Development" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Professional Development</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Section -->
+    <section id="github" class="github-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Open Source</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="github-content">
+                <div class="github-icon">
+                    <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </div>
+                <h3 class="github-title">Check Out My Code</h3>
+                <p class="github-description">Explore my repositories, contributions, and open-source projects on GitHub</p>
+                <a href="https://github.com/ibrahimfakhrey" target="_blank" class="github-btn">
+                    <span>Visit GitHub Profile</span>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="contact-quote">"Code. Teach. Inspire."</h2>
+                <p class="contact-subtext">Let's build something amazing together</p>
+                <div class="contact-links">
+                    <a href="mailto:ibrahimfakhryams@gmail.com" class="contact-link">
+                        <span class="icon">✉️</span>
+                        Email Me
+                    </a>
+                    <a href="tel:01012818977" class="contact-link">
+                        <span class="icon">📱</span>
+                        Call Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Ibrahim Fakhry Ibrahim. All rights reserved.</p>
+            <p class="footer-tagline">Crafted with passion and precision</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="static/js/particles.js"></script>
+    <script src="static/js/animations.js"></script>
+</body>
+</html>
