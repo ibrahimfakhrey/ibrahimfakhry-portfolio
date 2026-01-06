@@ -1,35 +1,30 @@
-// Initialize Lenis Smooth Scroll with enhanced settings
+// Detect mobile device
+const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+
+// Initialize Lenis Smooth Scroll with optimized settings
 const lenis = new Lenis({
-    duration: 1.8,
+    duration: isMobile ? 1.2 : 1.5, // Faster on mobile
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     orientation: 'vertical',
     gestureOrientation: 'vertical',
     smoothWheel: true,
-    smoothTouch: false,
+    smoothTouch: false, // Native touch scroll is smoother on mobile
     wheelMultiplier: 1,
     touchMultiplier: 2,
     infinite: false,
 });
 
-function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-}
-
-requestAnimationFrame(raf);
-
 // GSAP ScrollTrigger Setup
 gsap.registerPlugin(ScrollTrigger);
 
-// Update ScrollTrigger on Lenis scroll
-lenis.on('scroll', ScrollTrigger.update);
-
-// Sync Lenis with GSAP ScrollTrigger
+// Single RAF loop - connect Lenis to GSAP ticker (fixes double RAF issue)
 gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
 });
-
 gsap.ticker.lagSmoothing(0);
+
+// Update ScrollTrigger on Lenis scroll
+lenis.on('scroll', ScrollTrigger.update);
 
 // Hero Section Animations with enhanced premium feel
 gsap.from('.hero-name', {
@@ -142,34 +137,19 @@ gsap.from('.contact-item', {
     ease: 'power4.out',
 });
 
-// Projects Grid Animation with Parallax
+// Projects Grid Animation - simplified
 gsap.utils.toArray('.project-card').forEach((card, index) => {
-    // Entrance animation
     gsap.from(card, {
         scrollTrigger: {
             trigger: card,
             start: 'top 85%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
         },
         opacity: 0,
-        y: 80,
-        rotationX: -15,
-        duration: 1.2,
-        ease: 'power4.out',
+        y: 50,
+        duration: 0.8,
+        ease: 'power3.out',
         delay: index * 0.1,
-    });
-    
-    // Parallax effect
-    gsap.to(card, {
-        scrollTrigger: {
-            trigger: card,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1,
-        },
-        y: -30,
-        ease: 'none',
     });
 });
 
@@ -191,66 +171,54 @@ gsap.utils.toArray('.course-card').forEach((card, index) => {
     });
 });
 
-// Gallery Animation with Stagger and 3D effects
+// Gallery Animation - simplified for better performance
 gsap.utils.toArray('.gallery-item').forEach((item, index) => {
-    // Entrance animation with 3D rotation
+    // Simpler entrance animation
     gsap.from(item, {
         scrollTrigger: {
             trigger: item,
             start: 'top 90%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none', // Don't reverse - saves recalculation
         },
         opacity: 0,
-        scale: 0.7,
-        rotationY: 45,
-        rotationX: 15,
-        duration: 1.2,
-        ease: 'back.out(1.7)',
-        delay: index * 0.1,
+        y: 40,
+        scale: 0.95,
+        duration: 0.8,
+        ease: 'power2.out',
+        delay: index * 0.08,
     });
-    
-    // Parallax effect for gallery items
-    gsap.to(item, {
-        scrollTrigger: {
-            trigger: item,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1,
-        },
-        y: gsap.utils.random(-30, 30),
-        ease: 'none',
-    });
-    
-    // Add 3D tilt effect on mouse move
-    item.addEventListener('mousemove', (e) => {
-        const rect = item.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = ((y - centerY) / centerY) * -10;
-        const rotateY = ((x - centerX) / centerX) * 10;
-        
-        gsap.to(item, {
-            rotationX: rotateX,
-            rotationY: rotateY,
-            duration: 0.5,
-            ease: 'power2.out',
-            transformPerspective: 1000,
+
+    // 3D tilt effect only on desktop
+    if (!isMobile) {
+        item.addEventListener('mousemove', (e) => {
+            const rect = item.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / centerY) * -8;
+            const rotateY = ((x - centerX) / centerX) * 8;
+
+            gsap.to(item, {
+                rotationX: rotateX,
+                rotationY: rotateY,
+                duration: 0.4,
+                ease: 'power2.out',
+                transformPerspective: 800,
+            });
         });
-    });
-    
-    item.addEventListener('mouseleave', () => {
-        gsap.to(item, {
-            rotationX: 0,
-            rotationY: 0,
-            duration: 0.5,
-            ease: 'power2.out',
+
+        item.addEventListener('mouseleave', () => {
+            gsap.to(item, {
+                rotationX: 0,
+                rotationY: 0,
+                duration: 0.4,
+                ease: 'power2.out',
+            });
         });
-    });
+    }
 });
 
 // Contact Section Animation
@@ -404,50 +372,54 @@ document.querySelectorAll('.project-card').forEach((card) => {
     });
 });
 
-// Parallax effect for hero content
-gsap.to('.hero-content', {
-    scrollTrigger: {
-        trigger: '.hero-section',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1,
-    },
-    y: 150,
-    opacity: 0.3,
-    ease: 'none',
-});
+// Parallax effect for hero content (desktop only - causes lag on mobile)
+if (!isMobile) {
+    gsap.to('.hero-content', {
+        scrollTrigger: {
+            trigger: '.hero-section',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1,
+        },
+        y: 100,
+        opacity: 0.4,
+        ease: 'none',
+    });
+}
 
-// Add 3D tilt effect to course cards
-document.querySelectorAll('.course-card').forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        gsap.to(card, {
-            rotationX: rotateX,
-            rotationY: rotateY,
-            duration: 0.5,
-            ease: 'power2.out',
-            transformPerspective: 1000,
+// Add 3D tilt effect to course cards (desktop only)
+if (!isMobile) {
+    document.querySelectorAll('.course-card').forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = (y - centerY) / 15;
+            const rotateY = (centerX - x) / 15;
+
+            gsap.to(card, {
+                rotationX: rotateX,
+                rotationY: rotateY,
+                duration: 0.4,
+                ease: 'power2.out',
+                transformPerspective: 800,
+            });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                rotationX: 0,
+                rotationY: 0,
+                duration: 0.4,
+                ease: 'power2.out',
+            });
         });
     });
-    
-    card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-            rotationX: 0,
-            rotationY: 0,
-            duration: 0.5,
-            ease: 'power2.out',
-        });
-    });
-});
+}
 
 // Create floating animation for section backgrounds
 gsap.to('.about-section', {
